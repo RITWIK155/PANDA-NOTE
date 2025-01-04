@@ -1,0 +1,79 @@
+import pyspark.pandas as ps
+
+from azure.opendataset 
+
+       
+
+python3 -m virtualenv pandaenv
+source bin/activate
+(pandaenv) (base) ritwik@Ritwiks-MacBook-Air pandaenv % 
+
+Index: mane rows
+
+			# read civ files
+coffee = pd.read_csv('./warmup-data/coffee.csv')
+			# read parquet files
+results = pd.read_parquet('./data/results.parquet')
+
+Why we take parquet file?
+=> Reads data from a Parquet file, which is a binary file format optimized for performance and space. It's commonly used in data engineering because it supports compression and is faster to read/write than CSV.
+
+CSV: Simple, universal, and human-readable. Suitable for small datasets.
+Parquet: Efficient and optimized for large datasets, especially in analytics workflows.
+Excel: Often used for data exchange in business applications.
+--------------------------------------------------------------------------------------
+					PANDA NOTES
+
+			1st 
+1. df.shape : It is not an function , is a attribute print count rows and column. EX: (rows 88883, column 85)
+2. df.info() : similar like shape . It is usually a function, print count rows and column as well as data type. EX: here object is basically string,
+3. pd.set_option('display.max_columns',85) : display all 85 column.
+4. df.head(5) df.tail(5) : print first 5 rows and print last 5 rows.
+5. pd.set_option('display.max_columns',85) : print all the 5 columns except of showing some columns.
+6. schema_df = pd.read_csv('survey_results_schema.csv'): read a csv file using read_csv predefined function.
+7. Python Dictionary: is key and value & Ex: List["Corey] is mutable we can add more person
+   Keys = Columns & values = Rows
+8. type(df['email']) : OP: pandas.core.series.Series , so it is series datatype. Series is a list of data. Series is a single column of rows . Used for 
+   mail
+			Snippets notebook & from 12 panda demo notebook also
+			2nd
+
+9. How to access single column value from a dictionary?
+   => Best practice is use df['email'] to print single column because if there is a count column and if you want to print count column and write  
+      df.count there might be a chance instead of taking count as a column it can take as a function. 
+      EX:	df['email']
+     		#or
+	     	df.email
+10. How to access all columns?
+    => df.columns
+11. How to access all rows?
+    => iloc: iloc access rows by integer location.#iloc dile integer dite hobe ex: df.iloc[0] EX: df.iloc[[0,1]]: printing first two rows of data.
+       loc: with loc you can use levels . df.loc['email']
+
+       #printing first two rows email column only & email present in 3rd no column means here 2 no columns so. Without double bracket it will print 
+	error and not take as list.
+        df.iloc[[0,1], 2]]
+                 | |.  |
+          (1st row)(2 row).  (3rd column)
+	#or 
+        df.loc[[0,1], 'email'].  # printing first 2 rows email column
+12. what is index?
+    => if you do not assign it will automatically assign 0,1,2...85 serial no these called index
+13. schema_df = pd.read_csv('survey_results_schema.csv',index_col='Column') : making column column as a index -> set index
+14. schema_df.loc['ITperson'] : Now you can see particular column -> using index
+15. schema_df.index: showing all index
+16. schema_df.sort_index(ascending=False): sorting a dataframe according to index . here show Descending order 
+17. schema_df.sort_index(inplace=True): If you want your sort order will be permanent and will be used for future use make inplace=True.
+18. df.reset_index(inplace=True) -> reseting index
+
+
+
+
+
+
+
+
+
+
+
+
