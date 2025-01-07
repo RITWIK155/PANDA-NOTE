@@ -36,7 +36,7 @@ Excel: Often used for data exchange in business applications.
 8. type(df['email']) : OP: pandas.core.series.Series , so it is series datatype. Series is a list of data. Series is a single column of rows . Used for 
    mail
 			Snippets notebook & from 12 panda demo notebook also
-			2nd
+			2nd (Indexing)
 
 9. How to access single column value from a dictionary?
    => Best practice is use df['email'] to print single column because if there is a count column and if you want to print count column and write  
@@ -63,11 +63,55 @@ Excel: Often used for data exchange in business applications.
 14. schema_df.loc['ITperson'] : Now you can see particular column -> using index
 15. schema_df.index: showing all index
 16. schema_df.sort_index(ascending=False): sorting a dataframe according to index . here show Descending order 
-17. schema_df.sort_index(inplace=True): If you want your sort order will be permanent and will be used for future use make inplace=True.
+17. schema_df.sort_index(inplace=True): df.set_index('email', inplace=True) If you want your sort order will be permanent and will be used for future 
+					use make inplace=True.
 18. df.reset_index(inplace=True) -> reseting index
 
+			3rd(Filtering values)
 
+19. Filter mask:  filt = df['last'] == 'Doe'
+	          df[filt]
+20. Why panda little bit confusing as it print any value . Ex print:  df.loc[filt, 'email'] 			
+21. Filter First name will be John & last name  will be Doe ?
+    => filt = (df['last'] == 'Doe') & (df['first'] == 'John')
+       df[filt]
+22. If you want opposite of filter result : df.loc[~filt, 'email']	
+23. Filter the salary based on Country and languageworkedwith & convertedcomp and salary >70000:
+    => high_salary=(df['ConvertedComp']>70000)
+       df.loc[high_salary,[ 'Country','LanguageWorkedWith','ConvertedComp']] 
+24. another filter synatx how to filter countries?
+    => countries = ['United States', 'India', 'United Kingdom', 'Germany', 'Canada' ]
+       filt = df['Country'].isin(countries)
+          #for printing results
+       df.loc[filt, 'Country']
+25. Filter only LanguageWorkedWith?
+    => df['LanguageWorkedWith']
+26. NAN = NOt a Number
 
+			4th (UPDATING ROWS & COLUMNS - MODIFYING DATA WITH DATAFRAMES)
+
+27. How to uppercase a string and remove spaces?   
+    => text = "      updating Rows & Columns - Modifying data with dataframes"
+       uppercase_text = text.strip().upper()
+       print(uppercase_text)
+  (#strip func used to remove space , u can use without strip no problem)
+28. How to upper case columns?
+    => df.columns = [x.upper() for x in df.columns]
+       df
+29. How to change column names? First is normal output 2nd is change column names:
+    => df.columns
+       OP: Index(['email', 'first', 'last'], dtype='object')
+            #change column names
+    => df.columns = ['first_name','last_name','email']
+       df 
+30. Remove white spaces and make it in underscore?   Using str replace function
+    => df.columns = df.columns.str.replace(' ','_')
+       df
+31. Renaming the columns and make it permanent for future use?
+    => df.rename(columns={'first_name':'first','last_name':'last'},inplace=True)
+32. Renaming a row value from last column 
+    => df.loc[2, 'last'] = 'smith'     #or     df.at[2, 'last'] = 'smith' 
+33. 
 
 
 
