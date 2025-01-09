@@ -86,7 +86,7 @@ Excel: Often used for data exchange in business applications.
        df.loc[filt, 'Country']
 25. Filter only LanguageWorkedWith?
     => df['LanguageWorkedWith']
-26. NAN = NOt a Number
+26. NAN = NOt a Number values
 
 			4th (UPDATING ROWS & COLUMNS - MODIFYING DATA WITH DATAFRAMES)
 
@@ -111,7 +111,56 @@ Excel: Often used for data exchange in business applications.
     => df.rename(columns={'first_name':'first','last_name':'last'},inplace=True)
 32. Renaming a row value from last column 
     => df.loc[2, 'last'] = 'smith'     #or     df.at[2, 'last'] = 'smith' 
-33. 
+33. How to lowercase all mail columns?
+    => df['email'] = df['email'].str.lower()
+34. What is Apply,map,applymap,replace?
+    => apply email length: df['email_length'] = df['email'].apply(len)
+                           df['email_length']
+
+			   #Another Example:
+                           def update_email(email):
+    				return email.upper()
+                           df['email'].apply(update_email)       # all email will be in upper case
+    => apply lower email using lambda : df['email']=df['email'].apply(lambda x: x.lower())
+
+    => applymap: df.applymap(lambda x: len(str(x))) 
+
+    => map: map method only work on series. map is used for substituting each value in a series with another values
+       Ex: df[ 'first'].map({ 'Corey' :'Chris','Jane':'Mary' })
+           # & which value will not shown will showna s NAN(not a number value) same output for replace but here NAN will not come
+           df[ 'first'].replace({ 'Corey' :'Chris','Jane':'Mary' })
+					
+35. What is lambda function?
+    => The lambda function in Python Pandas is a small anonymous function primarily used for quick data manipulation within the Pandas library.
+       Ex: Python: x = lambda a: a + 10
+                   print(x(5)).       # 15
+
+	   Panda: import pandas as pd
+		  data = [1,2,3,4,5]
+                  series=pd.Series(data)
+                  print(series)
+                  squared_series=series.apply(lambda x: x*x)
+                  print(squared_series)
+36. Showing minimum values?
+    => df.apply(pd.Series.min)
+       # or
+       df.apply(lambda x: x.min())
+
+				5th (# Addd/Remove rows & columns from dataframes)
+
+37. How to take a new column "full_name" and add first+last name to full_name column 
+    => df["full_name "]=df['first']+ ' ' +df['last']
+       df
+38. How to remove columns?
+    => df.drop(columns=['first', 'last'], inplace=True)
+       df
+39. How to remove rows? 
+    => filt = df['last']=='Doe'
+       df.drop(index=df[filt].index)
+
+                           
+
+
 
 
 
